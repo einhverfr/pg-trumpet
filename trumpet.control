@@ -1,0 +1,7 @@
+default_version = '0.0.1'
+directory = 'extension'
+requires = 'pg_message_queue'
+relocatable = 'false'
+superuser = 'true'
+schema = 'trumpetrep'
+

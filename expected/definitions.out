@@ -1,0 +1,228 @@
+set search_path to trumpetrep;
+CREATE SCHEMA trumpetrep;
+create extension pg_message_queue;
+create extension trumpet;
+SELECT * from create_sub('test');
+ id | subname 
+----+---------
+  1 | test
+(1 row)
+
+CREATE TABLE public.foo(id int primary key, parent_id int, test text);
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+insert into public.foo (id, parent_id, test) values (1, null, 'Test'), (2, null, 'Test2');
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+SELECT filtered_table_to_sub('test', 'public.foo', 'id', array[1]);
+               filtered_table_to_sub               
+---------------------------------------------------
+ (1,test,public.foo,"sub_1_52608_filter()",id,{1})
+(1 row)
+
+UPDATE public.foo set id = id;
+select * from get_sub_row('test');
+ src_table  | id 
+------------+----
+ public.foo |  1
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select fkey_table_to_sub('test', 'public.foo', 'id', 'parent_id', 'public.foo');
+NOTICE:  relation "sub_1_52608" already exists, skipping
+                  fkey_table_to_sub                  
+-----------------------------------------------------
+ (2,test,public.foo,"sub_1_52608_fkey()",parent_id,)
+(1 row)
+
+insert into public.foo(id, parent_id, test) values (3, 1, 'Got this one'), (4, 2, 'Excluded');
+NOTICE:  Found item
+select * from get_sub_row('test');
+ src_table  | id 
+------------+----
+ public.foo |  3
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+create table public.bar(id int primary key, foo_id int, test text); 
+select fkey_table_to_sub('test', 'public.bar', 'id', 'foo_id', 'public.foo');
+                fkey_table_to_sub                 
+--------------------------------------------------
+ (3,test,public.bar,"sub_1_52625_fkey()",foo_id,)
+(1 row)
+
+insert into public.bar(id, foo_id, test) values (1, 1, 'test'), (2, 2, 'test2');
+NOTICE:  Found item
+select * from get_sub_row('test');
+ src_table  | id 
+------------+----
+ public.bar |  1
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+insert into public.bar(id, foo_id, test) values
+(3, 3, 'include this one'), (4, 4, 'But not this one'),
+(5, 1, 'include this one too'), (6, 2, 'But not this one either');
+NOTICE:  Found item
+NOTICE:  Found item
+select * from get_sub_row('test');
+ src_table  | id 
+------------+----
+ public.bar |  3
+(1 row)
+
+select * from get_sub_row('test');
+ src_table  | id 
+------------+----
+ public.bar |  5
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
+select * from get_sub_row('test');
+ src_table | id 
+-----------+----
+           |   
+(1 row)
+
