@@ -1,0 +1,42 @@
+{
+   "name": "trumpet",
+   "abstract": "Row-level publication model for PostgreSQL",
+   "version": "0.0.1",
+   "maintainer": [ "Chris Travers <christravers@gmail.com>" ],
+   "license": {
+      "PostgreSQL": "http://www.postgresql.org/about/licence"
+   },
+   "provides": { 
+      "trumpet": {
+         "file": "extension/pg-trumpet.sql",
+         "version": "0.0.1",
+         "abstract": "Row-level publication model for PostgreSQL"
+      }
+   },
+   "meta-spec": {
+     "version": "1.0.0",
+     "url": "http://pgxn.org/meta/spec.txt"
+   },
+   "description": "trumpet provides an ability to replicate a series of rows from one table and rows from the same or other tables which join that row.  It is useful when a small portion of a dataset must be copied somewhere else.",
+   "tags": [ "monitoring"],
+   "prereqs": {
+      "runtime": {
+        "requires": {
+           "PostgreSQL": "9.4.0",
+           "pg_stat_statements": 0,
+           "plpgsql": 0
+        }
+      }
+   },
+   "resources": {
+       "bugtracker": {
+           "web": "http://github.com/einhverfr/pg-trumpet/issues"
+       },
+       "repository": {
+          "url": "git://github.com/einhverfr/pg-trumpet/issues
+          "web": "http://github.com/einhverfr/pg-trumpet.git",
+          "type": "git"
+       }
+   }
+}
+
